@@ -18,7 +18,6 @@ jobs:
       matrix:
         node-version: [12.x, 14.x, 16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -28,3 +27,12 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
+    - name: Deploy to Server
+      uses: easingthemes/ssh-deploy@v2.1.5
+      env:
+          SSH_PRIVATE_KEY: '-----BEGIN RSA PRIVATE KEY-----MIIEpAIBAAKCAQEA4LSJE4Nsk3xQGEzYxw8SInxV65Qn+oxrfBSO33u/ZtoBNEwYNHMKlPLwCBUT+U4ocvMhLh/puqDmWRHk6pm26IfGFwCzUb/HHLl8/soqFYezM88Tse7EUN2LmK6OtPML1f7JEYLb4ruM3I2d1JsJhFJeqwnzjWUmo03iZYrx2neFnXzflVwCmXpEiLrTRDaHkgzJ/n8x0pq+Cha84awxFYwsdD5Pi5VWRn8/vg9Uw9cfBrsbP6C/UFwAuo8IRWmr34wDZwOLMnnI5pU+pGnZNLu4HxyiODCYmU+fhSQkg+PtkNEf3k5Lk4iiuktU8BGSCO+k3WQfDOMsRGlkbEqPiwIDAQABAoIBAQC9hSdUEPXDkwbO6AmyIrDt6yZgkk4B0Ota9M/oCCxP6DE51bBYlGrpY9k1R+nXzKbrBMsIZxwwL0L4/tGvWMRfbRyTDCEyIukh/gRBtWs3S4PGf7Ih0bs8ZQ83UIrGbXOfIsyde1xP6FWPM9ZZmgW11+9GnRcRO64R8D+x2zXPRoixfGAN/dc+kx8uaIzumQ4GQQfWimYbgBfToyO+q4vWZr58m3ZCx+l1SU4aDi0trM9MWx43H2hkP9bjYnnpWo4jLN+X6iqud5L9N3yQHvlG0aLe/+A/KZLP/81mo5t0LEGHDCDmh/dTL+FMQmwMM+W+RAkf4MKYTvS8lwJaPMzZAoGBAPqEJjZxKi0ht84dj34O7W8G5LNJ+CFr9mOrI/uZ2iV/PGZDFoxDgVeP0j4IH6xcYIrNiqnOGfUNecVWNZXvMLXfM89/Xmo8b8oBA8CFU8qQe63bihOlk8xydTYLBuDDM0tTibFRonieXKJgIsmapMgCsUz707++RisO2k6Y/GZ3AoGBAOWfvuf4Fya9+9GeEvhcrPDrrdoejYkmpjCuLXXxUGatc7R8DeuXj6p0LL9yn01aC86dfBIxdld1winjkTwmfT+dJ29wDe8vQ2d+NRokDZuSMolRiru+EdQBAwqVGyNvliEz7gqpSgYQekPUs5rcHrC3vOYXye3S6AdDuQ9O0uCNAoGAUsm9PxyizYtpDMqkEwqn2Js0lTOKtrDRGhsCpzEu8FleAoWFPBFK+z7iQfG5VeKpXPWUL42W8m7joR1eVBBZzqDWpGn5L66NWvp+3O6yxCx/UvNMbDW55ESnC5cVTM31c51F0b2ira3X+yk+FdXvQtHw+fn2/lTJJ42fA353Wv0CgYEArfa3mGChkY1voaCDuLvlneS/4rcw/Y5VbB4ZfPhktFWGil9N4IYDpty7JhP90ol81n0DiXkFsj8Z6chpuMtkKnSycr/PHr2M8HRyYKqd0JYTSWuIkrHuKdLWbgcG93LLp74DAvq8hRmot4kGxTUs3y9komG1b0NQ3GgXZRyPsOUCgYBkORYeS61mkv2xHdnsdBq5ikGVb9tsA3hHt0rSyS6O+IahLGR3BDGS+gLJU3Py4sWusC/w9LE04/uWvyakGUpc9B2iSx7a/3ZYy8B7Fm5CPJyKyAVEGI59d3J8I5jSDWpl2BwvGA3aU+pq31uUQQc8UmFLb0+lBjcZ8NjcZ+vEQA==-----END RSA PRIVATE KEY-----'
+          ARGS: '-rltgoDzvO --delete'
+          SOURCE: dist # 这是要复制到阿里云静态服务器的文件夹名称
+          REMOTE_HOST: '124.221.231.217' # 你的阿里云公网地址
+          REMOTE_USER: root # 阿里云登录后默认为 root 用户，并且所在文件夹为 root
+          TARGET: /root/public # 打包后的 dist 文件夹将放在 /root/node-server
