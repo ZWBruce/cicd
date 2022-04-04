@@ -14,12 +14,6 @@ function App() {
   const divRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    fetch('/api/set-cookie1', {
-      method: 'POST'
-    }).then(() => {
-      console.log('cookie set', document.cookie)
-    });
-
     // (0, eval)(`import _ from 'lodash'`);
 
     const shadowDom = divRef.current!.attachShadow({ mode: 'open' });
@@ -67,6 +61,9 @@ function App() {
           setValue(e.target.value)
         }} />
         <button onClick={() => {
+          if(!value) {
+            return ;
+          }
           workerPort.postMessage(value)
         }}>push data</button>
 
@@ -75,8 +72,6 @@ function App() {
           list.map(t => <li key={t}>{t}</li>)
         }
 </ul>
-        <iframe src="http://localhost:3000" width="100%" height="300px" ></iframe>
-        <iframe src="about:blank" ref={iframeRef}></iframe>
       </header>
     </div>
   )
