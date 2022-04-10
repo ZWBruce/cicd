@@ -49,6 +49,7 @@ function App() {
 
           <button
             onClick={() => {
+              console.log('req send');
               fetch('/api/default').then(async (res) =>
                 console.log(await res.text())
               );
@@ -56,7 +57,7 @@ function App() {
               // console.log(iframeRef.current?.contentWindow?.document);
             }}
           >
-            req
+            req111
           </button>
         </p>
         <p>

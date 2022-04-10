@@ -5,7 +5,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "server": "nodemon --exec \"ts-node server.ts\""
+    "server": "nodemon --exec \"ts-node server.ts\"",
+    "postbuild": "cp service_worker.js dist/service_worker.js"
   },
   "dependencies": {
     "browserfs": "^1.4.3",
