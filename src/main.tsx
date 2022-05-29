@@ -4,7 +4,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from '/service_worker.js?worker';
 import 'virtual:windi.css';
+import {
+  Link,
+  unstable_HistoryRouter as HistoryRouter,
+} from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import Router from './Router';
 
+const history = createBrowserHistory({ window });
 if ('serviceWorker' in navigator) {
   /* 当页面加载完成就创建一个serviceWorker */
   window.addEventListener('load', function () {
@@ -24,9 +31,27 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+const links = [
+  {
+    link: '/',
+    name: '首页',
+  },
+  {
+    link: '/config',
+    name: '动态配置页',
+  },
+];
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <HistoryRouter history={history}>
+      {links.map((link, i) => (
+        <Link to={link.link} key={i} className="mr-10px">
+          {link.name}
+        </Link>
+      ))}
+      <Router />
+    </HistoryRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

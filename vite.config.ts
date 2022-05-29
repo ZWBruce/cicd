@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import WindiCSS from 'vite-plugin-windicss';
+import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,6 +26,9 @@ export default defineConfig({
       processGlobal: 'browserfs/dist/shims/process.js',
       bufferGlobal: 'browserfs/dist/shims/bufferGlobal.js',
       bfsGlobal: require.resolve('browserfs'),
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@pages': path.resolve(__dirname, './src/pages'),
+      '@src': path.resolve(__dirname, './src'),
     },
   },
 });

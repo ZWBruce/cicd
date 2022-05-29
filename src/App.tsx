@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
 import workerPort from './util/worker';
-import Config from './components/Config';
 
 const { port1, port2 } = new MessageChannel();
 
@@ -42,7 +41,8 @@ function App() {
   return (
     <div>
       <header>
-        <p>Hello Vite + React!</p>
+        <p>首页1!</p>
+
         <p>
           <button type="button" onClick={() => setCount((count) => count + 1)}>
             count is: {count}
@@ -116,7 +116,6 @@ function App() {
           ))}
         </ul>
       </header>
-      <Config />
     </div>
   );
 }
