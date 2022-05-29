@@ -1,3 +1,5 @@
+@import 'antd/dist/antd.min.css';
+
 .App {
   text-align: center;
 }
@@ -35,10 +37,6 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-button {
-  font-size: calc(10px + 2vmin);
 }
 
 p{

@@ -34,13 +34,13 @@ jobs:
           username: root
           key: ${{ secrets.SERVER_SSH_KEY }}
           # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
-          script: rm -rf ~/public/dist
+          script: rm -rf /usr/local/nginx/html/assets
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
       env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: '-rltgoDzvO --delete'
-          SOURCE: dist # 这是要复制到阿里云静态服务器的文件夹名称
+          SOURCE: dist/* # 这是要复制到阿里云静态服务器的文件夹名称
           REMOTE_HOST: '124.221.231.217' # 你的阿里云公网地址
           REMOTE_USER: root # 阿里云登录后默认为 root 用户，并且所在文件夹为 root
-          TARGET: /root/public # 打包后的 dist 文件夹将放在 /root/node-server
+          TARGET: /usr/local/nginx/html/* # 打包后的 dist 文件夹将放在 /root/node-server

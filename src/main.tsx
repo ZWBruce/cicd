@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from '/service_worker.js?worker';
+import 'virtual:windi.css';
 
 if ('serviceWorker' in navigator) {
   /* 当页面加载完成就创建一个serviceWorker */

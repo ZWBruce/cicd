@@ -9,6 +9,7 @@
     "postbuild": "cp service_worker.js dist/service_worker.js"
   },
   "dependencies": {
+    "antd": "^4.20.6",
     "browserfs": "^1.4.3",
     "postcss-prefix-selector": "^1.14.0",
     "react": "^17.0.2",
@@ -24,6 +25,8 @@
     "postcss": "^8.4.5",
     "ts-node": "^10.7.0",
     "typescript": "^4.4.4",
-    "vite": "^2.7.2"
+    "vite": "^2.7.2",
+    "vite-plugin-windicss": "^1.8.4",
+    "windicss": "^3.5.4"
   }
 }

@@ -1,5 +1,6 @@
 import { FC, useState, useEffect } from 'react';
 import axios from 'axios';
+import { Button } from 'antd';
 
 const Config: FC = () => {
   const [k, setK] = useState('');
@@ -26,7 +27,7 @@ const Config: FC = () => {
           setK(e.target.value);
         }}
       />
-      <label>value</label>
+      <label className="text-[#f44]">value</label>
       <input
         type="text"
         onChange={(e) => {
@@ -34,7 +35,9 @@ const Config: FC = () => {
         }}
       />
       <div>
-        <button onClick={createConfig}>添加</button>
+        <Button onClick={createConfig} type="primary">
+          添加
+        </Button>
       </div>
     </>
   );
