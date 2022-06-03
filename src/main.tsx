@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from '/service_worker.js?worker';
 import 'virtual:windi.css';
 import {
@@ -10,6 +9,7 @@ import {
 } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import Router from './Router';
+import Layout from '@src/components/Layout';
 
 const history = createBrowserHistory({ window });
 if ('serviceWorker' in navigator) {
@@ -31,26 +31,12 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-const links = [
-  {
-    link: '/',
-    name: '首页',
-  },
-  {
-    link: '/config',
-    name: '动态配置页',
-  },
-];
-
 ReactDOM.render(
   <React.StrictMode>
     <HistoryRouter history={history}>
-      {links.map((link, i) => (
-        <Link to={link.link} key={i} className="mr-10px">
-          {link.name}
-        </Link>
-      ))}
-      <Router />
+      <Layout>
+        <Router />
+      </Layout>
     </HistoryRouter>
   </React.StrictMode>,
   document.getElementById('root')

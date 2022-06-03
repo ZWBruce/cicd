@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
 import workerPort from './util/worker';
+import 'antd/dist/antd.min.css';
 
 const { port1, port2 } = new MessageChannel();
 
